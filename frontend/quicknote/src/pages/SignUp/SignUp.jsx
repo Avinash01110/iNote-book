@@ -5,7 +5,7 @@ import { validateEmail } from "../../utils/helper";
 import { validatePassword } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 
-const SignUp = () => {
+const SignUp = ({ getUserInfo }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,9 +60,10 @@ const SignUp = () => {
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
         navigate("/notes");
-        setTimeout(() => {
-          window.location.reload();
-        }, 200);
+        getUserInfo();
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 200);
       }
     } catch (error) {
       if (

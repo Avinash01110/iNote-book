@@ -4,7 +4,7 @@ import PasswordInput from "../../components/Input/PasswordInput";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 
-const Login = () => {
+const Login = ({getUserInfo}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -36,9 +36,7 @@ const Login = () => {
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
         navigate("/notes");
-        setTimeout(() => {
-          window.location.reload();
-        }, 200);
+        getUserInfo();
       }
     } catch (error) {
       if (

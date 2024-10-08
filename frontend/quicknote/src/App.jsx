@@ -80,8 +80,16 @@ const App = () => {
           exact
           element={<Notes searchedResult={allNotes} isSearch={isSearch} />}
         />
-        <Route path="/login" exact element={<Login />} />
-        <Route path="/signup" exact element={<SignUp />} />
+        <Route
+          path="/login"
+          exact
+          element={<Login getUserInfo={getUserInfo} />}
+        />
+        <Route
+          path="/signup"
+          exact
+          element={<SignUp getUserInfo={getUserInfo} />}
+        />
       </Routes>
       <Footer />
     </Router>

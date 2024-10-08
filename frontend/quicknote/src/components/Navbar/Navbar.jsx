@@ -24,9 +24,9 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }) => {
   const onLogout = () => {
     localStorage.clear();
     navigate("/");
-    setTimeout(() => {
-      window.location.reload();
-    }, 200);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 200);
   };
 
   const handleSearch = () => {
