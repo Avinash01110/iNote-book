@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <div className="mx-auto min-h-screen">
-        <div className="h-[130vh] w-full flex justify-center items-center relative">
+        <div className="h-[130vh] bg-cream w-full flex justify-center items-center relative">
           <video
             className="h-full w-full object-cover"
             src={banner}
