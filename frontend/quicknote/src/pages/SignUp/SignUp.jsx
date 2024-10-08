@@ -12,6 +12,8 @@ const SignUp = ({ getUserInfo }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const [isSignup, setIsSignup] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
@@ -43,6 +45,7 @@ const SignUp = ({ getUserInfo }) => {
     }
 
     setError("");
+    setIsSignup(true);
 
     // Api for signup
 
@@ -76,6 +79,7 @@ const SignUp = ({ getUserInfo }) => {
         setError("An unexpected error occured, Please try again.");
       }
     }
+    setIsSignup(false);
   };
 
   return (
@@ -118,12 +122,20 @@ const SignUp = ({ getUserInfo }) => {
               <p className="text-xs -mt-3 ml-1 text-accent-100">{error}</p>
             )}
           </div>
-
           <button
             type="submit"
-            className="py-2 px-4 text-text-200 bg-primary-300 rounded-lg font-medium border border-solid border-primary-100/50 hover:bg-primary-200 hover:text-text-100 transition duration-300 ease-in-out"
+            className={`${
+              isSignup ? "disabled:" : ""
+            } flex flex-row items-center justify-center gap-2 py-2 px-4 text-text-200 bg-primary-300 rounded-lg font-medium border border-solid border-primary-100/50 hover:bg-primary-200 hover:text-text-100 transition-all duration-500 ease-in-out`}
           >
             Create Account
+            {isSignup && (
+              <img
+                className="h-6 w-6 object-cover p-1 transition-all duration-500 ease-in-out"
+                src={rolling}
+                alt=""
+              />
+            )}
           </button>
           <p className="text-center text-sm">
             Already have an account?{" "}

@@ -3,11 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import PasswordInput from "../../components/Input/PasswordInput";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
+import rolling from "../../assets/images/rolling.gif";
 
-const Login = ({getUserInfo}) => {
+const Login = ({ getUserInfo }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const [isLogin, setIsLogin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,6 +27,7 @@ const Login = ({getUserInfo}) => {
     }
 
     setError("");
+    setIsLogin(true);
 
     // Api for login
 
@@ -49,6 +53,7 @@ const Login = ({getUserInfo}) => {
         setError("An unexpected error occured, Please try again.");
       }
     }
+    setIsLogin(false);
   };
 
   return (
@@ -79,10 +84,20 @@ const Login = ({getUserInfo}) => {
 
           <button
             type="submit"
-            className="py-2 px-4 text-text-200 bg-primary-300 rounded-lg font-medium border border-solid border-primary-100/50 hover:bg-primary-200 hover:text-text-100 transition duration-300 ease-in-out"
+            className={`${
+              isLogin ? "disabled:" : ""
+            } flex flex-row items-center justify-center gap-2 py-2 px-4 text-text-200 bg-primary-300 rounded-lg font-medium border border-solid border-primary-100/50 hover:bg-primary-200 hover:text-text-100 transition-all duration-500 ease-in-out`}
           >
             Login
+            {isLogin && (
+              <img
+                className="h-6 w-6 object-cover p-1 transition-all duration-500 ease-in-out"
+                src={rolling}
+                alt=""
+              />
+            )}
           </button>
+
           <p className="text-center text-sm">
             Not registered yet?{" "}
             <Link
